@@ -1,4 +1,7 @@
-from Funciones import pedir_entero_positivo_validado 
+from colorama import init, Fore, Style
+from Funciones import pedir_entero_positivo_validado
+
+init(autoreset=True)
 
 class Persona:
     '''
@@ -14,7 +17,7 @@ class NoInfectado(Persona):
         self.telefono = telefono
 
     def __str__(self):
-        return "\t• Estado: No infectado \n\t• Nombre completo: {} \n\t• Edad: {} \n\t• Telefono: {}\n".format(self.nombre, self.edad, self.telefono)
+        return "\t• Estado: No infectado \n\t• Nombre completo: {} \n\t• Edad: {} \n\t• Telefono: {}".format(self.nombre, self.edad, self.telefono)
 
     def to_string(self):
         return "No infectado" + "," + self.nombre + "," + str(self.edad) + "," + str(self.telefono) + ",X,X,X,X"
@@ -24,7 +27,7 @@ class EnRevision(NoInfectado):
         NoInfectado.__init__(self, nombre, edad, telefono)
     
     def __str__(self):
-        return "\t• Estado: En revision \n\t• Nombre completo: {} \n\t• Edad: {} \n\t• Telefono: {}\n".format(self.nombre, self.edad, self.telefono)
+        return "\t• Estado: En revision \n\t• Nombre completo: {} \n\t• Edad: {} \n\t• Telefono: {}".format(self.nombre, self.edad, self.telefono)
 
     def to_string(self):
         return "En revision" + "," + self.nombre + "," + str(self.edad) + "," + str(self.telefono) + ",X,X,X,X"
@@ -37,7 +40,7 @@ class PosibleInfectado(Persona):
         self.estado = estado
 
     def __str__(self):
-        return "\t• Estado: Posible infectado \n\t• Nombre completo: {} \n\t• Edad: {} \n\t• Datos de cuarentena: \n\t  - Direccion: {} \n\t  - Ciudad: {} \n\t  - Estado: {} \n".format(self.nombre, self.edad, self.direccion, self.ciudad, self.estado)
+        return "\t• Estado: Posible infectado \n\t• Nombre completo: {} \n\t• Edad: {} \n\t• Datos de cuarentena: \n\t  - Direccion: {} \n\t  - Ciudad: {} \n\t  - Estado: {}".format(self.nombre, self.edad, self.direccion, self.ciudad, self.estado)
 
     def to_string(self):
         return "Posible infectado" + "," + self.nombre + "," + str(self.edad) + ",X"  + "," + self.direccion + "," + self.ciudad + "," + self.estado + ",X"
@@ -48,7 +51,7 @@ class Infectado(PosibleInfectado):
         self.medico = medico
 
     def __str__(self):
-        return "\t• Estado: Infectado \n\t• Nombre completo: {} \n\t• Edad: {} \n\t• Datos de cuarentena: \n\t  - Direccion: {} \n\t  - Ciudad: {} \n\t  - Estado: {} \n\t• Medico: {} \n".format(self.nombre, self.edad, self.direccion, self.ciudad, self.estado, self.medico)
+        return "\t• Estado: Infectado \n\t• Nombre completo: {} \n\t• Edad: {} \n\t• Datos de cuarentena: \n\t  - Direccion: {} \n\t  - Ciudad: {} \n\t  - Estado: {} \n\t• Medico: {}".format(self.nombre, self.edad, self.direccion, self.ciudad, self.estado, self.medico)
 
     def to_string(self):
         return "Infectado" + "," + self.nombre + "," + str(self.edad) + ",X"  + "," + self.direccion + "," + self.ciudad + "," + self.estado + "," + self.medico
@@ -101,7 +104,7 @@ def buscar(nombre):
                 return Infectado(user[1], user[2], user[4], user[5], user[6], user[7])
 
 def preguntar_sintoma(pregunta):
-    respuesta = pedir_entero_positivo_validado("\n" + pregunta + "\n\nSi la respuesta es afirmativa ingrese 1, si la respuesta es negativa ingrese 0: ")
+    respuesta = pedir_entero_positivo_validado("\n" + Fore.MAGENTA + pregunta + "\n\nSi la respuesta es afirmativa ingrese 1, si la respuesta es negativa ingrese 0: ")
     while respuesta != 0 and respuesta != 1:
         respuesta = pedir_entero_positivo_validado(pregunta + "\n\nSi la respuesta es afirmativa ingrese 1, si la respuesta es negativa ingrese 0: ")
     return respuesta
@@ -110,7 +113,7 @@ def ver():
     '''
     Funcion para ver los usuarios en la base de datos del registro local
     '''
-    print("\n Estos son los usuarios registrados actualmente:\n")
+    print("Estos son los usuarios registrados actualmente:\n")
     usuarios = []
     with open("BaseDeDatosRegistroLocal.txt", "r") as archivo_usuarios:
         all_users = archivo_usuarios.readlines()
@@ -127,7 +130,7 @@ def ver():
         
     usuarios.sort(key= lambda usuario: usuario.nombre)
     for i, user in enumerate(usuarios, 1):
-        print(i + '.')
+        print(Fore.CYAN + str(i) + '.')
         print(user)
 
 def registrar():
@@ -156,24 +159,24 @@ def registrar():
         
         print("")
         if sintomas == 0:
-            print("Usted no esta infectado")
+            print("Usted no esta infectado.\n")
             numero = pedir_entero_positivo_validado("Ingrese su numero de telefono: ")
 
             usuario = NoInfectado(nombre.title(), edad, numero)
         elif sintomas < 3:
-            print("Usted estara en revision")
+            print("Usted estara en revision.\n")
             numero = pedir_entero_positivo_validado("Ingrese su numero de telefono: ")
 
             usuario = EnRevision(nombre.title(), edad, numero)
         elif sintomas < 5:
-            print("Usted es un posible infectado. Debe realizar cuarentena.")
+            print("Usted es un posible infectado. Debe realizar cuarentena.\n")
             direccion = input("Ingrese la direccion donde realizara cuarentena: ")
             ciudad = input("Ingrese la ciudad donde realizara cuarentena: ")
             estado = input("Ingrese el estado donde realizara cuarentena: ")
 
             usuario = PosibleInfectado(nombre.title(), edad, direccion, ciudad.title(), estado.title())
         else:
-            print("Usted esta infectado. Debe realizar cuarentena y consultar con un medico")
+            print("Usted esta infectado. Debe realizar cuarentena y consultar con un medico.\n")
             direccion = input("Ingrese la direccion donde realizara cuarentena: ")
             ciudad = input("Ingrese la ciudad donde realizara cuarentena: ")
             estado = input("Ingrese el estado donde realizara cuarentena: ")

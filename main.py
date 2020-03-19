@@ -1,19 +1,26 @@
 from time import sleep
 from colorama import init, Fore, Style
-from Funciones import pedir_entero_positivo_validado
+from Funciones import pedir_entero_positivo_validado, separador
 from RegistroLocal import registrar, ver
+from EstadisticasAPI import estadisticas
 
 init(autoreset=True)
 
-def separador():
-    print("|"*90)
-
 def main():
-    print("Bienvenido a COVID-19 Tracker!\n")
+    separador()
+    print(Fore.MAGENTA + '''
+ ██████╗ ██████╗ ██╗   ██╗██╗██████╗        ██╗ █████╗     ████████╗██████╗  █████╗  ██████╗██╗  ██╗███████╗██████╗ 
+██╔════╝██╔═══██╗██║   ██║██║██╔══██╗      ███║██╔══██╗    ╚══██╔══╝██╔══██╗██╔══██╗██╔════╝██║ ██╔╝██╔════╝██╔══██╗
+██║     ██║   ██║██║   ██║██║██║  ██║█████╗╚██║╚██████║       ██║   ██████╔╝███████║██║     █████╔╝ █████╗  ██████╔╝
+██║     ██║   ██║╚██╗ ██╔╝██║██║  ██║╚════╝ ██║ ╚═══██║       ██║   ██╔══██╗██╔══██║██║     ██╔═██╗ ██╔══╝  ██╔══██╗
+╚██████╗╚██████╔╝ ╚████╔╝ ██║██████╔╝       ██║ █████╔╝       ██║   ██║  ██║██║  ██║╚██████╗██║  ██╗███████╗██║  ██║
+ ╚═════╝ ╚═════╝   ╚═══╝  ╚═╝╚═════╝        ╚═╝ ╚════╝        ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝   
+    ''')
 
     continuar = 1
     while continuar:
-        print("Qué desea hacer?")
+        separador()
+        print(Fore.MAGENTA + "Qué desea hacer?")
         print('''
     1. Realizar registro local 
     2. Ver personas en registro local
@@ -33,8 +40,9 @@ def main():
             ver()      
         elif accion == 3:
             separador()
+            estadisticas()
         else:
-            print("\n\nHasta luego. Recuerde tomar sus previsiones!")
+            print(Fore.CYAN + "\n\nHasta luego. Recuerde tomar sus previsiones!")
             separador()
             continuar = 0
         

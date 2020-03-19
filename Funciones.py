@@ -1,3 +1,7 @@
+from colorama import init, Fore, Style
+
+init(autoreset=True)
+
 def validar_entero_positivo(n):
     '''
     Función para verificar si el argumento pasado es un numero entero positivo. 
@@ -23,3 +27,8 @@ def pedir_entero_positivo_validado(mensaje):
     while not validar_entero_positivo(n):
         n = input(mensaje)
     return int(n)
+
+def separador():
+    print("\n")
+    print(Fore.BLUE + "▪ "*80)
+    print("\n")
