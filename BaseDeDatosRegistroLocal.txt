@@ -1,0 +1,9 @@
+No infectado,Dulce Aparicio,45,4143445276,X,X,X,X
+No infectado,Oriana Gonzalez,18,3625374890,X,X,X,X
+No infectado,Luis Stanislao,19,4142000045,X,X,X,X
+En revision,Andres Pereda,10,4168945323,X,X,X,X
+En revision,Elena Valero,10,4245673421,X,X,X,X
+Posible infectado,Emilio Pardo,22,X,baruta,Caracas,Miranda,X
+Infectado,Paula Torres,70,X,la urbina,Caracas,Miranda,Jose Ramirez
+Posible infectado,Jorge Cuenca,100,X,la morita,Maracay,Aragua,X
+Infectado,David Garcia,90,X,chacao,Caracas,Miranda,Daniel Perez

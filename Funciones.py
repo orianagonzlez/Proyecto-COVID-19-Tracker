@@ -19,7 +19,7 @@ def validar_entero_positivo(n):
 
 def pedir_entero_positivo_validado(mensaje):
     '''
-    Función para pedir un numero hasta que el usuario ingrese un valor que sea un numero entero positivo.
+    Función para pedir un número hasta que el usuario ingrese un valor que sea un numero entero positivo.
 
     Retorna el valor ingresado como int.
     '''
@@ -29,6 +29,9 @@ def pedir_entero_positivo_validado(mensaje):
     return int(n)
 
 def separador():
+    '''
+    Función que imprime una fila que sirve como separador de contenidos.
+    '''
     print("\n")
     print(Fore.BLUE + "▪ "*80)
     print("\n")
